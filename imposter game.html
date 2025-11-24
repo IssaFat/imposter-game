@@ -1,0 +1,182 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+</head>
+
+<body>
+<h1>The imposter game</h1>
+<p>(made by issa)</p>	
+<h2 id="impos"></h2>
+<h2 id="catyboy"></h2>	
+<div id="wholecode">	
+<h2>Number of players:</h2>
+<input id="T1" placeholder="2 player min">
+<button id="B1" onClick="add()">Confirm</button><p id="players"></p>
+<div></div>	
+<br>
+<br>
+<h2>Please enter the category:</h2>
+<h3 id="">Options:</h3>
+<h3 id="options"></h3>
+<ol id="categories">
+ <li>Memes<input id="memes" type="checkbox"></li>	
+ <li>Countries<input id="countries" type="checkbox"></li>	
+ <li>Careers<input id="careers" type="checkbox"></li>	
+ <li>Animals<input id="animal" type="checkbox"></li>	
+ <li>People<input id="people" type="checkbox"></li>	
+ <li>Games<input id="games" type="checkbox"></li>	
+ <li>School Subjects<input id="subjects" type="checkbox"></li>	
+ <li>Foods<input id="food" type="checkbox"></li>	
+	
+	
+	
+</ol>	
+
+<button id="Start" onClick="startt()">Start!</button>
+	</div>	
+<script>
+let county;	
+let output="";
+
+let plyrs3;	
+	
+function add(){
+
+let plyrs = Number(document.getElementById("T1").value)
+
+if(plyrs<2){
+	alert("Please enter at least two players")
+}
+else{
+plyrs3 = plyrs;	
+document.getElementById("T1").remove();
+document.getElementById("B1").remove();
+let i = 0;
+while(i<plyrs){
+county = "U"+i;	
+++i;
+output += "<input id='"+county+"'><br>";		
+	
+document.getElementById("players").innerHTML = output;
+	
+}
+}	
+}	
+let checkednum=0;
+let cat="";	
+let options=[];	
+	
+	
+function startt(){
+if(countries.checked){
+options=["United States", "Canada", "Mexico", "Brazil", "Germany", "France", "United Kingdom", "Italy", "Spain", "Japan", "China", "India", "Australia", "Russia", "South Africa", "Nigeria", "Egypt", "Argentina", "Sweden", "Turkey"];	
+cat = "Countries";
+checkednum++;	
+}
+else if(memes.checked){
+cat="Memes";
+checkednum++;		
+}	
+else if(careers.checked){
+options=["Software Engineer","Doctor","Nurse","Teacher","Accountant","Graphic Designer","Data Analyst","Mechanical Engineer","Sales Manager","Marketing Specialist","Electrician","Architect","Pharmacist","Journalist","Chef","Civil Engineer","Pilot","Plumber","Psychologist","Human Resources Manager"];	
+cat="Careers";
+checkednum++;	
+}	
+else if(animal.checked){
+options=["Lion","Tiger","Elephant","Giraffe","Zebra","Kangaroo","Panda","Monkey","Horse","Dog","Cat","Dolphin","Shark","Whale","Eagle","Owl","Frog","Snake","Rabbit","Bear"];	
+cat="Animals";
+checkednum++;	
+}
+else if(people.checked){
+options=["Issa","Sami","Kareem","Abed","Khaled Abusoud","Nidal","Bara","Imran","Ameer"]	
+cat="People";
+checkednum++;	
+}	
+else if(games.checked){
+options=["Minecraft","Fortnite","Among Us","Call of Duty","League of Legends","Overwatch","Valorant","Apex Legends","The Sims","Roblox","FIFA","PUBG","Genshin Impact","Rocket League","Zelda: Breath of the Wild","Animal Crossing","Cyberpunk 2077","Halo","Super Mario Odyssey","God of War"]	
+cat="Games";
+checkednum++;	
+}	
+else if(subjects.checked){
+options=["Mathematics","Physics","Chemistry","Biology","History","Geography","English","Computer Science","Economics","Psychology","Sociology","Philosophy","Art","Music","Physical Education","Political Science","Environmental Science","Literature","Statistics","Business Studies"]	
+cat="Subjects";
+checkednum++;	
+}	
+else if(food.checked){
+options=["Pizza","Burger","Sushi","Pasta","Tacos","Salad","Steak","Ramen","Ice Cream","Chocolate","Sandwich","Curry","Dumplings","Fried Rice","Pancakes","Lasagna","Paella","Falafel","Cheesecake","Burrito"]	
+cat="Food";
+checkednum++;	
+}
+else{
+alert("Please choose a option buddy");
+return;	
+}	
+
+let counted=0;
+let numarray=[];
+let person;
+county="";	
+while(counted<plyrs3){
+county="U"+counted;
+person = document.getElementById(county).value;	
+	
+numarray.push(person);
+++counted;	
+
+	
+}
+let randval= Math.floor(Math.random()*(options.length));
+let randper= Math.floor(Math.random()*plyrs3);	
+let chosencat = options[randval];
+let imposter = numarray[randper];	
+
+	
+document.getElementById("wholecode").innerHTML="";
+document.getElementById("catyboy").innerHTML="";	
+	
+let counted2=0;
+let county2="";	
+while(counted2<plyrs3){
+document.getElementById("catyboy").innerHTML += "<h2 id='bn"+counted2+"'>"+numarray[counted2]+"</h2>"+"<button id='bt"+counted2+"'>Show</button>"+"<br>";		
+++counted2;	
+	
+}	
+	
+
+	
+for (let newcount = 0; newcount < plyrs3; newcount++){
+let tsid = "bt"+newcount;	
+let tsid2 = "bn"+newcount;	
+
+document.getElementById(tsid).onclick = function thisstuffidk(){
+if(numarray[newcount] === imposter){
+document.getElementById(tsid2).innerHTML = "Imposter!";	
+}
+
+else{
+document.getElementById(tsid2).innerHTML = chosencat;
+}
+document.getElementById(tsid).textContent = "Remove";
+document.getElementById(tsid).onclick = function removi(){
+	document.getElementById(tsid).remove();
+	document.getElementById(tsid2).remove();		
+};	
+	
+}	
+
+	
+	
+}	
+
+}
+	
+	
+	
+	
+	
+</script>	
+	
+</body>
+</html>
